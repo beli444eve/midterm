@@ -5,19 +5,16 @@
 int FFT2(double *x_r, double *x_i, double *y_r, double *y_i,int N);
 int FFT3(double *x_r, double *x_i, double *y_r, double *y_i,int N);
 int FFT5(double *x_r, double *x_i, double *y_r, double *y_i,int N);
-int Generate_N(int p, int q, int r);
 int main()
 {
 	//y_k = sum(x_n * w_N^{-kn},n=0..N-1)
 	//w-n = cos(2*pi/N) + isin(2*pi/N)
-	int k,n,N,p,q,r;
+	int k,n,N;
 	double *x_r, *x_i, *y_r, *y_i, w_r, w_i;
 	clock_t t1, t2;
-	
-	printf("Please input p q r=");
-	scanf("%d %d %d", &p, &q, &r);
-	N = Generate_N(p, q, r);
-	printf("N=2^%d 3^%d 5^%d = %d\n",p,q,r,N);
+	printf("Please input N=");
+	scanf("%d", &N);
+	printf("N=%d\n",N);
 			
 	x_r = (double *) malloc(N*sizeof(double));
 	x_i = (double *) malloc(N*sizeof(double));
