@@ -26,7 +26,7 @@ int main()
 	}
 	//y_k = sum(x_n * w_N^{-kn},n=0..N-1)
 	//w-n = cos(2*pi/N) + isin(2*pi/N)
-	t1 = clock();
+/*	t1 = clock();
 	for(k=0;k<N;++k)	
 	{
 		y_r[k] = 0.0;
@@ -57,7 +57,7 @@ int main()
 	{
 		x_r[n] = n;
 		x_i[n] = 0;
-	}
+	}*/
 	FFT(x_r, x_i, y_r, y_i, N);
 	
 	for(n=0;n<N;++n)
