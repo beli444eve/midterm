@@ -5,18 +5,20 @@
 int FFT2(double *x_r, double *x_i, double *y_r, double *y_i,int N);
 int FFT3(double *x_r, double *x_i, double *y_r, double *y_i,int N);
 int FFT5(double *x_r, double *x_i, double *y_r, double *y_i,int N);
+int Generate_N(int p, int q, int r);
 int main()
 {
 	//y_k = sum(x_n * w_N^{-kn},n=0..N-1)
 	//w-n = cos(2*pi/N) + isin(2*pi/N)
-	int k,n,N;
+	int k,n,N,p,q,r;
 	double *x_r, *x_i, *y_r, *y_i, w_r, w_i;
 	clock_t t1, t2;
-		
-	printf("please input N=");
-	scanf("%d",&N);
-	printf("N=%d\n",N);
-		
+	
+	printf("Please input p q r=");
+	scanf("%d %d %d", &p, &q, &r);
+	N = Generate_N(p, q, r);
+	printf("N=2^%d 3^%d 5^%d = %d\n",p,q,r,N);
+			
 	x_r = (double *) malloc(N*sizeof(double));
 	x_i = (double *) malloc(N*sizeof(double));
 	y_r = (double *) malloc(N*sizeof(double));	
@@ -51,6 +53,16 @@ int main()
 		printf("%d : %f + %f i\n",n,y_r[n],y_i[n]);
 	}
 	return 0;		
+}
+int Generate_N(int p, int q, int r)
+{
+	int i, N = 1;
+	// N = 2^p 3^q 5^r
+	for(i=0;i<p;++i) N = N * 2;
+	for(i=0;i<q;++i) N = N * 3;
+	for(i=0;i<r;++i) N = N * 5;	
+	
+	return N;
 }
 int FFT2(double *x_r, double *x_i, double *y_r, double *y_i,int N)
 {
